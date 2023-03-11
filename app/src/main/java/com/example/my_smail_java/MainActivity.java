@@ -1,7 +1,11 @@
 package com.example.my_smail_java;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -18,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textCount; // окно вывода значения счётчика
     private Button button; // кнопка счётчика
     private int count = 0; // переменная счётчика
-
+    private ImageView mImageView;
     private static final String KEY_COUNT = "COUNT"; // создаем ключ хранения данных
 
     @Override
@@ -34,13 +38,34 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener(listener);
         super.onCreate(savedInstanceState);
-    }      // объект обработки нажатия кнопки (слушатель)
+   }      // объект обработки нажатия кнопки (слушатель)
+
+
+
+
     private View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            count++; // инкрементирование счётчика
-            textCount.setText(Integer.toString(count));
-        }
+      @Override
+      public void onClick(View view) {
+
+          if (count < 10) {
+
+              // инкрементирование счётчика
+              count++;
+              textCount.setText(Integer.toString(count));
+
+          } else {
+
+              Toast toast = Toast.makeText(getApplicationContext(), "ЗАДАЧА ВЫПОЛНЕНА", Toast.LENGTH_SHORT); // инициализация
+              toast.setGravity(Gravity.CENTER, 0, 0); // задание позиции на экране (положение, смещение по оси Х, смещение по оси Y)
+              // помещение тоста в контейнер
+              LinearLayout toastContainer = (LinearLayout) toast.getView();
+              // добавление в тост картинки
+              ImageView w = new ImageView(getApplicationContext()); // создание объекта картинки (контекст)
+              w.setImageResource(R.drawable.w); // добавление картинки из ресурсов
+              toastContainer.addView(w, 0); // добавление картинки под индексом 1 в имеющийся контейнер
+              toast.show(); // демонстрация тоста на экране
+          }
+      }
     };
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) { // Сохранение состояния count онo будет передана в методу onCreate и onRestoreInstanceState() при закрытии и повторном запуске процесса.

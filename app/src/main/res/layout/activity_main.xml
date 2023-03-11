@@ -40,12 +40,12 @@
     <Button
 
         android:id="@+id/button"
-        android:background="#006400"
-        android:textColor="#FFFF00"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
+        android:layout_width="360dp"
+        android:layout_height="75dp"
         android:layout_marginTop="50dp"
-        android:text="НАЖМИ"
+        android:background="#006400"
+        android:text="НАЖМИ 10 РАЗ"
+        android:textColor="#FFFF00"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
